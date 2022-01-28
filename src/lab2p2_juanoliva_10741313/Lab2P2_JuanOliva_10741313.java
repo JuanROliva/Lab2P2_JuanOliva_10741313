@@ -75,8 +75,26 @@ public class Lab2P2_JuanOliva_10741313 {
                     break;
                     
                 case "7":
-                    System.out.println("");
-                    break;
+                    if (listaAnimales.size()>=1) {
+                        System.out.println("Ingrese la posicion del Animal que desea Alimentar");
+                        String posicionAnimalAlimentar = lea.next();
+                        while (!validacionStringNumeros(posicionAnimalAlimentar)) {
+                            System.out.println("Ingrese un valor entre 0 y "+listaAnimales.size()+": ");
+                            posicionAnimalAlimentar = lea.next();
+                        }
+                        int posAlimentar = Integer.parseInt(posicionAnimalAlimentar);
+                        if (posAlimentar>=0&&posAlimentar<listaAnimales.size()) {
+                            System.out.println("Ingrese el valor del animal que se va comer");
+                            
+                        }
+                        
+                    }else{
+                        if (listaAnimales.size()==-1) {
+                            System.out.println("No hay animales agregados en la lista");
+                        }else{
+                            System.out.println("Solo hay un animal en lista y no se puede alimentar");
+                        }
+                    }
                     
                 case "8":
                     ciclo = false;
