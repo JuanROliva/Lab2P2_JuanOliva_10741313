@@ -18,8 +18,48 @@ public class Lab2P2_JuanOliva_10741313 {
                 case "1":
                     agregarAnimal();
                     break;
+                case "2":
+                    System.out.print("Nombre Cientifico del animal a modificar: ");
+                    String nombreCientifico = lea.next();
+                    int pos = retornoPosicionAnimal(nombreCientifico);
+                    if (pos!=-1) {
+                        modificarAnimal(pos);
+                    }else{
+                        System.out.println("El Animal no ha sido encontrado");
+                    }
+                    break;
+                    
+                case "3":
+                    System.out.print("Nombre cientifico del animal a eliminar: ");
+                    String nc = lea.nextLine();
+                    if (eliminarAnimal(nc)) {
+                        System.out.println("El animal ha sido eliminado exitosamente");
+                    }else{
+                        System.out.println("No se ha podido realizar esta operacion");
+                    }
+                    break;
+                    
+                case "4":
+                    System.out.print("Ingrese la posicion del animal a visualizar: ");
+                    String visualizar = lea.next();
+                    if (hayAnimales()) {
+                        if (validacionStringNumeros(visualizar)) {
+                            int num = Integer.parseInt(visualizar);
+                            if (num<listaAnimales.size()) {
+                                System.out.println(listaAnimales.get(num));
+                            }else{
+                                System.out.println("No existe un Animal en esa posicion");
+                            }
+                        }
+                    }else{
+                        System.out.println("Aun no agregado animales");
+                    }
+                    break;
+                    
+                    
                 default:
-                    throw new AssertionError();
+                    System.out.println("Opcion invalida, regresando al menu");
+                    break;
             }
             
             
@@ -48,7 +88,7 @@ public class Lab2P2_JuanOliva_10741313 {
                            5. Imprimir todos los animales
                            6. Imprimir por Nombre Cientifico
                            7. Alimentar Animal
-                           """);
+                           8. Salir""");
         System.out.println("-----------------------------------------------------");
         System.out.print("Ingrese la opcion que desea ejecutar: ");
         return lea.next();
@@ -85,7 +125,9 @@ public class Lab2P2_JuanOliva_10741313 {
     
     //Metodo para agregar un animal
     static  void agregarAnimal(){
-        System.out.println("Ingrese los siguientes datos del Animal");
+        System.out.println("-----------------------------------------------------");
+        System.out.println("AGREGAR: Ingrese los siguientes datos del Animal");
+        System.out.println("-----------------------------------------------------");
         Animal a = animal();
         listaAnimales.add(new Animal(a.getNombreCientifico(), a.getNombreComun(),
                 a.getHabitat(),a.getAlimentacion(), a.getDescripcionRasgos(), 
@@ -152,21 +194,22 @@ public class Lab2P2_JuanOliva_10741313 {
     
     static Animal animal(){
         System.out.print("Ingrese el Nombre Cientifico: ");
-        String nombreCientifico = lea.next();
+        lea.nextLine();
+        String nombreCientifico = lea.nextLine();
         System.out.print("Ingrese el Nombre Comun: ");
-        String nombreComun = lea.next();
+        String nombreComun = lea.nextLine();
         System.out.print("Ingrese el Habitat: ");
-        String habitat = lea.next();
+        String habitat = lea.nextLine();
         System.out.print("Ingrese la Alimentacion: ");
-        String alimentacion = lea.next();
+        String alimentacion = lea.nextLine();
         System.out.print("Ingrese Rasgos Caracteristicos: ");
-        String descripcionRasgos = lea.next();
+        String descripcionRasgos = lea.nextLine();
         System.out.print("Ingrese Distribucion Geografica: ");
-        String distribucionGeografica = lea.next();
+        String distribucionGeografica = lea.nextLine();
         System.out.print("Ingrese la cantidad de vida (Valor > 0) : ");
-        String vidaString = lea.next();
+        String vidaString = lea.nextLine();
         while (!validacionStringNumeros(vidaString)) {
-            System.out.println("Ingrese en valor numerico > 0");
+            System.out.print("Ingrese en valor numerico > 0: ");
             vidaString = lea.next();
         }
         int vida = Integer.parseInt(vidaString);
@@ -176,62 +219,62 @@ public class Lab2P2_JuanOliva_10741313 {
     
     static void modificacionAtributos(Animal a){
         System.out.print("""
-                                 Que desea modificar
-                                 -----------------------------------------------------
-                                 1. Nombre Cientifico
-                                 2. Nombre Comun
-                                 3. Habitat
-                                 4. Alimentacion
-                                 5. Rasgos Caracterisiticos
-                                 6. Distribucion Geografica
-                                 7. Vida
-                                 -----------------------------------------------------
-                                """);
-                System.out.print("Ingrese la opcion que desea ejecutar: ");
-                String opc1 = lea.next();
-                switch (opc1) {
-                    case "1" -> {
-                        System.out.print("Ingrese el nuevo nombre cientifico: ");
-                        a.setNombreCientifico(lea.next());
-                        System.out.println("Nombre Cientifico Cambiado exitosamente");
-                    }
-                    case "2" -> {
-                        System.out.print("Ingrese el nuevo nombre comun: ");
-                        a.setNombreComun(lea.next());
-                        System.out.println("Nombre Comun Cambiado exitosamente");
-                    }
-                    case "3" -> {
-                        System.out.print("Ingrese el nuevo habitat: ");
-                        a.setHabitat(lea.next());
-                        System.out.println("Habitat Cambiado exitosamente");
-                    }
-                    case "4" -> {
-                        System.out.print("Ingrese la nueva alimentacion: ");
-                        a.setAlimentacion(lea.next());
-                        System.out.println("Alimentacion Cambiada exitosamente");
-                    }
-                    case "5" -> {
-                        System.out.print("Ingrese los nuevos rasgos: ");
-                        a.setDescripcionRasgos(lea.next());
-                        System.out.println("Rasgos cambiados exitosamente");
-                    }
-                    case "6" -> {
-                        System.out.print("Ingrese la nueva Distribucion Geografica: ");
-                        a.setDistribucionGeografica(lea.next());
-                        System.out.println("Distribucion cambiada exitosamente");
-                    }
-                    case "7" -> {
-                        System.out.print("Ingrese la nueva vida: ");
-                        String vidaString = lea.next();
-                        while (!validacionStringNumeros(vidaString)) {
-                            System.out.println("Ingrese en valor numerico > 0");
-                            vidaString = lea.next();
-                        }
-                        a.setVida(Integer.parseInt(vidaString));
-                        System.out.println("Vida cambiada exitosamente");
-                    }
-                    default -> System.out.print("Opcion incorrecta, Regresando a Menu Principal ");
+            Que desea modificar
+            -----------------------------------------------------
+            1. Nombre Cientifico
+            2. Nombre Comun
+            3. Habitat
+            4. Alimentacion
+            5. Rasgos Caracterisiticos
+            6. Distribucion Geografica
+            7. Vida
+            -----------------------------------------------------
+            """);
+        System.out.print("Ingrese la opcion que desea ejecutar: ");
+        String opc1 = lea.next();
+        switch (opc1) {
+            case "1" -> {
+                System.out.print("Ingrese el nuevo nombre cientifico: ");
+                a.setNombreCientifico(lea.next());
+                System.out.println("Nombre Cientifico Cambiado exitosamente");
+            }
+            case "2" -> {
+                System.out.print("Ingrese el nuevo nombre comun: ");
+                a.setNombreComun(lea.next());
+                System.out.println("Nombre Comun Cambiado exitosamente");
+            }
+            case "3" -> {
+                System.out.print("Ingrese el nuevo habitat: ");
+                a.setHabitat(lea.next());
+                System.out.println("Habitat Cambiado exitosamente");
+            }
+            case "4" -> {
+                System.out.print("Ingrese la nueva alimentacion: ");
+                a.setAlimentacion(lea.next());
+                System.out.println("Alimentacion Cambiada exitosamente");
+            }
+            case "5" -> {
+                System.out.print("Ingrese los nuevos rasgos: ");
+                a.setDescripcionRasgos(lea.next());
+                System.out.println("Rasgos cambiados exitosamente");
+            }
+            case "6" -> {
+                System.out.print("Ingrese la nueva Distribucion Geografica: ");
+                a.setDistribucionGeografica(lea.next());
+                System.out.println("Distribucion cambiada exitosamente");
+            }
+            case "7" -> {
+                System.out.print("Ingrese la nueva vida: ");
+                String vidaString = lea.next();
+                while (!validacionStringNumeros(vidaString)) {
+                    System.out.print("Ingrese en valor numerico > 0 : ");
+                    vidaString = lea.next();
                 }
+                a.setVida(Integer.parseInt(vidaString));
+                System.out.println("Vida cambiada exitosamente");
+            }
+            default -> System.out.print("Opcion incorrecta, Regresando a Menu Principal ");
+        }
     }
     
     
