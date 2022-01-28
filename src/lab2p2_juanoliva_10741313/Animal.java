@@ -82,8 +82,18 @@ public class Animal {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return "nombreCientifico: " + nombreCientifico + ", nombreComun: " + 
+                nombreComun + ", habitat: " + habitat + ", alimentacion: " + 
+                alimentacion + ", descripcionRasgos: " + descripcionRasgos + 
+                ", distribucionGeografica: " + distribucionGeografica + 
+                ", vida: " + vida;
+    }
     
     public void comer(Animal a){
         vida += a.getVida();
     }
+    
 }
