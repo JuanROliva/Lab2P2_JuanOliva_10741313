@@ -31,6 +31,7 @@ public class Lab2P2_JuanOliva_10741313 {
                     
                 case "3":
                     System.out.print("Nombre cientifico del animal a eliminar: ");
+                    lea.nextLine();
                     String nc = lea.nextLine();
                     if (eliminarAnimal(nc)) {
                         System.out.println("El animal ha sido eliminado exitosamente");
@@ -256,6 +257,25 @@ public class Lab2P2_JuanOliva_10741313 {
         System.out.print("Ingrese el Nombre Cientifico: ");
         lea.nextLine();
         String nombreCientifico = lea.nextLine();
+        boolean b = true;
+        for (Animal a : listaAnimales) {
+            if (a.getNombreCientifico()== nombreCientifico) {
+                b = false;
+                break;
+            }
+        }
+        while (!b) {
+            System.out.print("Ingrese el Nombre Cientifico: ");
+            lea.nextLine();
+            nombreCientifico = lea.nextLine();
+            for (Animal a : listaAnimales) {
+                if (a.getNombreCientifico()== nombreCientifico) {
+                    b = false;
+                    break;
+                }
+            }
+        }
+        
         System.out.print("Ingrese el Nombre Comun: ");
         String nombreComun = lea.nextLine();
         System.out.print("Ingrese el Habitat: ");
