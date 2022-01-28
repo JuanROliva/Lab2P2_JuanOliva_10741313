@@ -135,6 +135,7 @@ public class Lab2P2_JuanOliva_10741313 {
         System.out.println("-----------------------------------------------------");
         System.out.println(" Universidad Tecnologica Centroamericana UNITEC");
         System.out.println(" Asignatura: Laboratorio Programacion II");
+        System.out.println(" Fecha: 28 de Enero 2022");
         System.out.println(" Alumno: Juan Rafael Oliva");
         System.out.println(" Cuenta: 10741313");
     }
