@@ -56,15 +56,37 @@ public class Lab2P2_JuanOliva_10741313 {
                     }
                     break;
                     
+                case "5":
+                    if (hayAnimales()) {
+                        System.out.println("Lista de Animales");
+                        System.out.println("-----------------------------------------------------");
+                        for (Animal a : listaAnimales) {
+                            System.out.println(listaAnimales.indexOf(a)+" - "+a);
+                        }
+                    }else{
+                        System.out.println("Aun no se han agregado animales a la lista");
+                    }
+                    break;
+                    
+                case "6":
+                    for (Animal a : listaAnimales) {
+                        System.out.println(listaAnimales.indexOf(a)+" - "+a.getNombreCientifico() );
+                    }
+                    break;
+                    
+                case "7":
+                    System.out.println("");
+                    break;
+                    
+                case "8":
+                    ciclo = false;
+                    System.out.println("PROGRAMA TERMINADO");
+                    break;
                     
                 default:
                     System.out.println("Opcion invalida, regresando al menu");
                     break;
             }
-            
-            
-            
-            
         }
         
     }
