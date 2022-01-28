@@ -259,13 +259,13 @@ public class Lab2P2_JuanOliva_10741313 {
         String nombreCientifico = lea.nextLine();
         boolean b = true;
         for (Animal a : listaAnimales) {
-            if (a.getNombreCientifico()== nombreCientifico) {
+            if (a.getNombreCientifico().equals(nombreCientifico)) {
                 b = false;
                 break;
             }
         }
         while (!b) {
-            System.out.print("Ingrese el Nombre Cientifico: ");
+            System.out.print("Valor repetido, Ingrese otro Nombre Cientifico: ");
             lea.nextLine();
             nombreCientifico = lea.nextLine();
             for (Animal a : listaAnimales) {
