@@ -75,26 +75,46 @@ public class Lab2P2_JuanOliva_10741313 {
                     break;
                     
                 case "7":
-                    if (listaAnimales.size()>=1) {
-                        System.out.println("Ingrese la posicion del Animal que desea Alimentar");
+                    if (listaAnimales.size()>1) {
+                        System.out.print("Ingrese la posicion del Animal que desea Alimentar: ");
                         String posicionAnimalAlimentar = lea.next();
+                        String posicionAnimalComer;
                         while (!validacionStringNumeros(posicionAnimalAlimentar)) {
-                            System.out.println("Ingrese un valor entre 0 y "+listaAnimales.size()+": ");
+                            System.out.print("Ingrese un valor entre 0 y "+listaAnimales.size()+": ");
                             posicionAnimalAlimentar = lea.next();
                         }
                         int posAlimentar = Integer.parseInt(posicionAnimalAlimentar);
                         if (posAlimentar>=0&&posAlimentar<listaAnimales.size()) {
-                            System.out.println("Ingrese el valor del animal que se va comer");
-                            
+                            System.out.print("Ingrese el valor del animal que se va comer: ");
+                            posicionAnimalComer = lea.next();
+                            while (!validacionStringNumeros(posicionAnimalComer)) {
+                                System.out.print("Ingrese un valor numerico entre 0 y "+listaAnimales.size());
+                                posicionAnimalComer = lea.next();
+                            }
+                            int posComer = Integer.parseInt(posicionAnimalComer);
+                            if (posComer!=posAlimentar) {
+                                if (posComer>=0&&posComer<listaAnimales.size()) {
+                                    ((Animal)listaAnimales.get(posAlimentar)).comer(listaAnimales.get(posComer));
+                                    listaAnimales.remove(posComer);
+                                    System.out.println("Animal Alimentado exitosamente");
+                                }else{
+                                    System.out.println("El valor esta fuera de rango, regresando menu principal");
+                                }
+                            }else{
+                                System.out.println("El animal no se puede comer a si mismo");
+                            }
+                        }else{
+                            System.out.println("El valor ingresado esta fuera del rango");
                         }
                         
                     }else{
-                        if (listaAnimales.size()==-1) {
+                        if (listaAnimales.size()== 0) {
                             System.out.println("No hay animales agregados en la lista");
                         }else{
                             System.out.println("Solo hay un animal en lista y no se puede alimentar");
                         }
                     }
+                    break;
                     
                 case "8":
                     ciclo = false;
